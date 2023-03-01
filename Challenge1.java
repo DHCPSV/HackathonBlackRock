@@ -37,4 +37,21 @@ public class Challenge1
         Collections.sort(botMemoryUsages);
         Collections.reverse(botMemoryUsages);
     }
+
+    /**
+     *
+     * @param topNumber the top n amount of CPU Usages wanted
+     * @return answer as a string
+     */
+    private static String generateAnswerAsString(int topNumber) {
+        String answer = "";
+        for(int i = 0; i < topNumber; i++) {
+            answer += botMemoryUsages.get(i);
+            if( i != topNumber - 1){
+                answer += ", "; //ensures that the will not be a final comma at the end
+            }
+        }
+
+        return answer;
+    }
 }
