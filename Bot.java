@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bot {
-    public static final long SUPERMODULO = 720; //Product of all divisors
     private String name;
     private List<Long> securities;
     private int divisor;
@@ -107,11 +106,11 @@ public class Bot {
      * if it is not divisible by the divisor, it will be added to the securities list of the second bot.
      * the securities list of this bot will be empty.
      */
-    public void tradeSecurities(double cost){
+    public void tradeSecurities(double cost, long supermodulo){
         securities.stream().filter(x -> Math.ceil(x*x * cost) % divisor == 0)
-                  .forEach(x -> partnerBots[0].addSecurity((long) Math.ceil((x*x * cost) % SUPERMODULO)));
+                  .forEach(x -> partnerBots[0].addSecurity((long) Math.ceil((x*x * cost) % supermodulo)));
         securities.stream().filter(x -> Math.ceil(x*x * cost) % divisor != 0)
-                  .forEach(x -> partnerBots[1].addSecurity((long) Math.ceil((x*x * cost) % SUPERMODULO)));
+                  .forEach(x -> partnerBots[1].addSecurity((long) Math.ceil((x*x * cost) % supermodulo)));
 
         updateNumberOfInspection(securities.size());
         securities.clear();
