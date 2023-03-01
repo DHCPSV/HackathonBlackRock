@@ -78,11 +78,15 @@ public class Challenge2And3 {
         }
     }
 
-    /**
-     *
-     * @param timePeriod
-     */
-    public void simulateTrading(int timePeriod, double cost)
+    private long getSupermodulo() {
+        long supermodulo = 1;
+        for(Bot bot: bots) {
+            supermodulo *= bot.getDivisor();
+        }
+        return supermodulo;
+    }
+
+    private void simulateTrading(int timePeriod, double cost)
     {
         for(int i = 0; i < timePeriod; i++){
             for(Bot bot: bots){
