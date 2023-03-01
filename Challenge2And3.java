@@ -17,13 +17,13 @@ public class Challenge2And3 {
         task.operateChallenge3();
     }
 
-    public void operateChallenge2() {
+    private void operateChallenge2() {
         setBots();
         simulateTrading(2,0.2);
         sortBots();
     }
 
-    public void operateChallenge3() {
+    private void operateChallenge3() {
         setBots();
         simulateTrading(5000,1);
         sortBots();
@@ -63,7 +63,6 @@ public class Challenge2And3 {
                 String partnerBString = words[4].substring(0,words[4].length()-1).trim();
 
                 template.setTradePartners(partnerAString, partnerBString);
-
             }
         }
         bots.add(template); //adds the final bot
@@ -90,12 +89,12 @@ public class Challenge2And3 {
     {
         for(int i = 0; i < timePeriod; i++){
             for(Bot bot: bots){
-                bot.tradeSecurities(cost);
+                bot.tradeSecurities(cost, getSupermodulo());
             }
         }
     }
 
-    public void sortBots(){
+    private void sortBots(){
          bots.stream().sorted(Comparator.comparingLong(Bot::getNumberOfInspections).reversed())
                       .forEach(x -> System.out.print(x.getName() + " " + x.getNumberOfInspections() + "  "));
     }
